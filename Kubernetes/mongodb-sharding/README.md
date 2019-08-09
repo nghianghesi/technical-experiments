@@ -17,7 +17,7 @@ set-executionpolicy remotesigned #enable script run
 
 ## Connecting to mongo
 Enable port-forward so that you can use tool on host (like robo 3T to connect to Mongos on cluster for testing)
-Note: <mongos-cluster-id> is the one from kubectl get pods
+Note: mongos-cluster-id is the value from kubectl get pods
 ```PowerShell 
 kubectl port-forward mongos1-<mongos-cluster-id> 37017:27017
 ```
