@@ -14,7 +14,7 @@ namespace MongoQueries
             var client = new MongoClient(connectionString);
             var db = client.GetDatabase("test");
 
-            for (int i = 0; i < 500000; i++)
+            /*for (int i = 0; i < 500000; i++)
             {
                 db.GetCollection<TestEntity>().InsertOne(new TestEntity(){id = Guid.NewGuid(), name= $@"test{i}"});
             }
@@ -27,17 +27,7 @@ namespace MongoQueries
             for (int i = 0; i < 500000; i++)
             {
                 db.GetCollection<TestEntity>().InsertOne(new TestEntity() { id = Guid.NewGuid(), name = $@"xyz{i}" });
-            }
-
-            /*var indexKeys = Builders<TestEntity>.IndexKeys.Text(t => t.name);
-            var indexOptions = new CreateIndexOptions();
-            var indexModel = new CreateIndexModel<TestEntity>(indexKeys, indexOptions);
-            db.GetCollection<TestEntity>().Indexes.CreateOne(indexModel);*/
-
-            var indexKeys = Builders<TestEntity>.IndexKeys.Ascending(t => t.name_lower);
-            var indexOptions = new CreateIndexOptions();
-            var indexModel = new CreateIndexModel<TestEntity>(indexKeys, indexOptions);
-            db.GetCollection<TestEntity>().Indexes.CreateOne(indexModel);
+            }*/
 
             var q = new List<string>() { "abc1", "xyz1", "test1" };
             var filter = Builders<TestEntity>.Filter.Where(x => q.Contains(x.name_lower));
