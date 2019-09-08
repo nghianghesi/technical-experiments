@@ -50,7 +50,7 @@ namespace NetCoreSoap
             app.UseHttpsRedirection();
 
             app.UseSoapEndpoint<ISimpleCalculator>("/CalculatorService.svc", new BasicHttpBinding(), SoapSerializer.DataContractSerializer);
-            app.UseSoapEndpoint<ISimpleCalculator>("/CalculatorService.asmx", new BasicHttpBinding(), SoapSerializer.XmlSerializer);
+            app.UseSoapEndpoint<ISimpleCalculator>("/CalculatorService.asmx", new BasicHttpBinding(), SoapSerializer.DataContractSerializer);
 
             app.UseMvc();
         }

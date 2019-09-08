@@ -9,7 +9,7 @@ namespace CalculatorService
 {
     public class SimpleCalculatorService : ISimpleCalculator
     {
-        public Task<AddDataResponse> Add([XmlElement(ElementName = "Request")] AddDataRequest request)
+        public Task<AddDataResponse> Add(AddDataRequest request)
         {
             return Task.Run(() => new AddDataResponse() { Result = request.num1 + request.num2 });
         }
