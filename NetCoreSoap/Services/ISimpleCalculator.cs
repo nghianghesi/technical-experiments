@@ -16,17 +16,38 @@ namespace CalculatorService
         Task<AddDataResponse> Add([XmlElement("ApuRequest")] AddDataRequest request);
     }
 
+    [DataContract(Namespace = "http://www.test2.org/test2/types", Name = "InternalResult")]
+    [Serializable]
+    public class Operant
+    {
+        [DataMember]
+        public int Value { get; set; }
+    }
+
+    [DataContract(Namespace = "http://www.test2.org/test2/types", Name = "InternalResult")]
+    [Serializable]
+    public class InternalResult
+    {
+        [DataMember]
+        public int Result { get; set; }
+        [DataMember]
+        public List<Operant> Operants { get; set; }
+        [DataMember]
+        public List<InternalResult> InternalOperants { get; set; }
+    }
 
     [DataContract(Namespace = "http://www.test2.org/test2/types", Name = "ApuResponse")]
+    [Serializable]
     public class AddDataResponse
     {
         [DataMember(Name = "FinalResult")]
-        public int Result { get; set; }
+        public InternalResult Result { get; set; }
     }
 
 
     [DataContract(Namespace = "http://www.test2.org/test2/types", Name = "ApuRequest")]
     [MessageContract()]
+    [Serializable]
     public class AddDataRequest
     {
         [MessageBodyMember(Name = "n1")]

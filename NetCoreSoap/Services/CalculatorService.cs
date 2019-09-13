@@ -11,7 +11,21 @@ namespace CalculatorService
     {
         public Task<AddDataResponse> Add(AddDataRequest request)
         {
-            return Task.Run(() => new AddDataResponse() { Result = request.num1 + request.num2 });
+            return Task.Run(() => new AddDataResponse()
+            {
+                Result = new InternalResult()
+                {
+                    Result = request.num1 + request.num2,
+                    Operants = new List<Operant>() {
+                        new Operant(){ Value = request.num1 },
+                        new Operant(){ Value = request.num2 }
+                    },
+                    InternalOperants = new List<InternalResult>() {
+                        new InternalResult(){ Result = request.num1 },
+                        new InternalResult(){ Result = request.num2 }
+                    }
+                }
+            });
         }
     }
 }
